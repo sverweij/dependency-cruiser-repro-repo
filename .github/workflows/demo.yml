@@ -1,0 +1,39 @@
+name: demo output for dependency-issue #248
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 13.x
+        platform:
+          - ubuntu-latest
+
+    runs-on: ${{matrix.platform}}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: set up node ${{matrix.node-version}}@${{matrix.platform}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: install & build
+        run: |
+          npm i --global yarn@1
+          node --version
+          yarn --version
+          yarn
+          yarn build
+          echo "showing the json of a dependency-cruise"
+          yarn depcruise:json-stdout
+        shell: bash
+        env:
+          CI: true
