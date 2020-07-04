@@ -1,0 +1,23 @@
+{
+  "name": "328",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "depcruise": "depcruise src -v",
+    "depcruise:json": "depcruise src -v -T json > graphs-and-reports/json.json",
+    "depcruise:graph": "depcruise src --include-only '^(src)' -v -T dot | dot -T svg | tee graphs-and-reports/dependency-graph.svg | depcruise-wrap-stream-in-html > graphs-and-reports/dependency-graph.html",
+    "depcruise:graph-archi": "depcruise src --include-only '^(src)' -v -T archi | dot -T svg | tee graphs-and-reports/high-level-dependency-graph.svg | depcruise-wrap-stream-in-html > graphs-and-reports/high-level-dependency-graph.html",
+    "depcruise:html": "depcruise src  -v -T err-html > graphs-and-reports/dependency-violation-report.html"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "dependency-cruiser": "^9.9.0-beta-4",
+    "mocha": "^8.0.1",
+    "typescript": "^3.9.6"
+  }
+}
