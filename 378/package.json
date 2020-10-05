@@ -1,0 +1,18 @@
+{
+  "name": "378",
+  "version": "1.0.0",
+  "description": "minimal repro repo for https://github.com/sverweij/dependency-cruiser/issues/378",
+  "scripts": {
+    "depcruise": "depcruise src --output-type err --config",
+    "depcruise:graph": "depcruise src --include-only '^(src)' --config --output-type dot | dot -T svg | tee output/dependency-graph.svg | depcruise-wrap-stream-in-html > output/dependency-graph.html",
+    "depcruise:json": "depcruise src --output-type json --config --output-to output/graph-output.json",
+    "depcruise:text": "depcruise src --output-type text --config"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^9.15.0",
+    "typescript": "^4.0.3"
+  }
+}
