@@ -1,0 +1,20 @@
+{
+  "name": "452",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "depcruise": "depcruise src  --config",
+    "depcruise:text": "depcruise src  --config --output-type text",
+    "depcruise:graph": "depcruise src --include-only '^(src)' --config --output-type flat | dot -T svg > dependency-graph.svg",
+    "depcruise:graph:dev": "depcruise src --include-only '^(src)' --prefix vscode://file/$(pwd)/ --config --output-type flat | dot -T svg | depcruise-wrap-stream-in-html | browser",
+    "depcruise:graph-archi": "depcruise src --include-only '^(src)' --config --output-type archi | dot -T svg | depcruise-wrap-stream-in-html > high-level-dependency-graph.html",
+    "depcruise:html:dev": "depcruise src  --config --output-type err-html | browser"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/core": "^1.2.51",
+    "dependency-cruiser": "file:../../dependency-cruiser/dependency-cruiser-9.25.0.tgz"
+  }
+}
