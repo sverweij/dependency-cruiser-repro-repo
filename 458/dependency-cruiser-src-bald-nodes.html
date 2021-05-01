@@ -1,0 +1,2383 @@
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/three"></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/three-spritetext"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/3d-force-graph"
+    ></script>
+  </head>
+
+  <body>
+    <div id="3d-graph"></div>
+
+    <script>
+      const gData = {
+        nodes: [
+          {
+            id: "bin/depcruise-fmt.js",
+            displayname: "depcruise-fmt.js",
+            dirname: "bin",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/format.js",
+            displayname: "format.js",
+            dirname: "src/cli",
+            group: "unknown",
+          },
+          {
+            id: "src/main/index.js",
+            displayname: "index.js",
+            dirname: "src/main",
+            group: "unknown",
+          },
+          {
+            id: "src/schema/cruise-result.schema.json",
+            displayname: "cruise-result.schema.json",
+            dirname: "src/schema",
+            group: "unknown",
+          },
+          {
+            id: "src/enrich/index.js",
+            displayname: "index.js",
+            dirname: "src/enrich",
+            group: "unknown",
+          },
+          {
+            id: "src/enrich/clear-caches.js",
+            displayname: "clear-caches.js",
+            dirname: "src/enrich",
+            group: "unknown",
+          },
+          {
+            id: "src/enrich/derive/utl.js",
+            displayname: "utl.js",
+            dirname: "src/enrich/derive",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/enrich-modules.js",
+            displayname: "enrich-modules.js",
+            dirname: "src/enrich",
+            group: "unknown",
+          },
+          {
+            id: "src/graph-utl/add-focus.js",
+            displayname: "add-focus.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/graph-utl/match-facade.js",
+            displayname: "match-facade.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/utl/bus.js",
+            displayname: "bus.js",
+            dirname: "src/utl",
+            group: "unknown",
+          },
+          {
+            id: "src/utl/bus-log-levels.js",
+            displayname: "bus-log-levels.js",
+            dirname: "src/utl",
+            group: "unknown",
+          },
+          {
+            id: "src/enrich/add-validations.js",
+            displayname: "add-validations.js",
+            dirname: "src/enrich",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/index.js",
+            displayname: "index.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/match-dependency-rule.js",
+            displayname: "match-dependency-rule.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/is-module-only-rule.js",
+            displayname: "is-module-only-rule.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/matchers.js",
+            displayname: "matchers.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/utl/array-util.js",
+            displayname: "array-util.js",
+            dirname: "src/utl",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/utl.js",
+            displayname: "utl.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/match-module-rule.js",
+            displayname: "match-module-rule.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/validate/violates-required-rule.js",
+            displayname: "violates-required-rule.js",
+            dirname: "src/validate",
+            group: "unknown",
+          },
+          {
+            id: "src/enrich/derive/circular/index.js",
+            displayname: "index.js",
+            dirname: "src/enrich/derive/circular",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/circular/get-cycle.js",
+            displayname: "get-cycle.js",
+            dirname: "src/enrich/derive/circular",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/dependents/index.js",
+            displayname: "index.js",
+            dirname: "src/enrich/derive/dependents",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/dependents/get-dependents.js",
+            displayname: "get-dependents.js",
+            dirname: "src/enrich/derive/dependents",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/orphan/index.js",
+            displayname: "index.js",
+            dirname: "src/enrich/derive/orphan",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/orphan/is-orphan.js",
+            displayname: "is-orphan.js",
+            dirname: "src/enrich/derive/orphan",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/reachable/index.js",
+            displayname: "index.js",
+            dirname: "src/enrich/derive/reachable",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/derive/reachable/get-path.js",
+            displayname: "get-path.js",
+            dirname: "src/enrich/derive/reachable",
+            group: "enrich/derive",
+          },
+          {
+            id: "src/enrich/summarize/index.js",
+            displayname: "index.js",
+            dirname: "src/enrich/summarize",
+            group: "enrich/summarize",
+          },
+          {
+            id: "src/enrich/summarize/add-rule-set-used.js",
+            displayname: "add-rule-set-used.js",
+            dirname: "src/enrich/summarize",
+            group: "enrich/summarize",
+          },
+          {
+            id: "src/enrich/summarize/summarize-modules.js",
+            displayname: "summarize-modules.js",
+            dirname: "src/enrich/summarize",
+            group: "enrich/summarize",
+          },
+          {
+            id: "src/graph-utl/compare.js",
+            displayname: "compare.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/graph-utl/rule-set.js",
+            displayname: "rule-set.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/enrich/summarize/de-duplicate-violations.js",
+            displayname: "de-duplicate-violations.js",
+            dirname: "src/enrich/summarize",
+            group: "enrich/summarize",
+          },
+          {
+            id: "src/enrich/summarize/summarize-options.js",
+            displayname: "summarize-options.js",
+            dirname: "src/enrich/summarize",
+            group: "enrich/summarize",
+          },
+          {
+            id: "src/extract/index.js",
+            displayname: "index.js",
+            dirname: "src/extract",
+            group: "unknown",
+          },
+          {
+            id: "src/extract/clear-caches.js",
+            displayname: "clear-caches.js",
+            dirname: "src/extract",
+            group: "unknown",
+          },
+          {
+            id: "src/extract/parse/to-javascript-ast.js",
+            displayname: "to-javascript-ast.js",
+            dirname: "src/extract/parse",
+            group: "extract/parse",
+          },
+          {
+            id: "src/extract/transpile/index.js",
+            displayname: "index.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/meta.js",
+            displayname: "meta.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/parse/to-swc-ast.js",
+            displayname: "to-swc-ast.js",
+            dirname: "src/extract/parse",
+            group: "extract/parse",
+          },
+          {
+            id: "src/extract/transpile/babel-wrap.js",
+            displayname: "babel-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/coffeescript-wrap.js",
+            displayname: "coffeescript-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/javascript-wrap.js",
+            displayname: "javascript-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/livescript-wrap.js",
+            displayname: "livescript-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/svelte-wrap.js",
+            displayname: "svelte-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/svelte-preprocess.js",
+            displayname: "svelte-preprocess.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/typescript-wrap.js",
+            displayname: "typescript-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/transpile/vue-template-wrap.js",
+            displayname: "vue-template-wrap.js",
+            dirname: "src/extract/transpile",
+            group: "extract/transpile",
+          },
+          {
+            id: "src/extract/utl/get-extension.js",
+            displayname: "get-extension.js",
+            dirname: "src/extract/utl",
+            group: "extract/utl",
+          },
+          {
+            id: "src/extract/parse/to-typescript-ast.js",
+            displayname: "to-typescript-ast.js",
+            dirname: "src/extract/parse",
+            group: "extract/parse",
+          },
+          {
+            id: "src/extract/resolve/external-module-helpers.js",
+            displayname: "external-module-helpers.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/module-classifiers.js",
+            displayname: "module-classifiers.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/resolve.js",
+            displayname: "resolve.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/utl/path-to-posix.js",
+            displayname: "path-to-posix.js",
+            dirname: "src/extract/utl",
+            group: "extract/utl",
+          },
+          {
+            id: "src/extract/utl/strip-query-parameters.js",
+            displayname: "strip-query-parameters.js",
+            dirname: "src/extract/utl",
+            group: "extract/utl",
+          },
+          {
+            id: "src/extract/resolve/get-manifest/index.js",
+            displayname: "index.js",
+            dirname: "src/extract/resolve/get-manifest",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/get-manifest/merge-manifests.js",
+            displayname: "merge-manifests.js",
+            dirname: "src/extract/resolve/get-manifest",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/resolve-amd.js",
+            displayname: "resolve-amd.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/determine-dependency-types.js",
+            displayname: "determine-dependency-types.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/resolve-helpers.js",
+            displayname: "resolve-helpers.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/gather-initial-sources.js",
+            displayname: "gather-initial-sources.js",
+            dirname: "src/extract",
+            group: "unknown",
+          },
+          {
+            id: "src/extract/get-dependencies.js",
+            displayname: "get-dependencies.js",
+            dirname: "src/extract",
+            group: "unknown",
+          },
+          {
+            id: "src/extract/ast-extractors/extract-amd-deps.js",
+            displayname: "extract-amd-deps.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/ast-extractors/estree-helpers.js",
+            displayname: "estree-helpers.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/ast-extractors/extract-cjs-deps.js",
+            displayname: "extract-cjs-deps.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/ast-extractors/extract-es6-deps.js",
+            displayname: "extract-es6-deps.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/ast-extractors/extract-swc-deps.js",
+            displayname: "extract-swc-deps.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/ast-extractors/swc-dependency-visitor.js",
+            displayname: "swc-dependency-visitor.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/ast-extractors/extract-typescript-deps.js",
+            displayname: "extract-typescript-deps.js",
+            dirname: "src/extract/ast-extractors",
+            group: "extract/ast-extractors",
+          },
+          {
+            id: "src/extract/resolve/index.js",
+            displayname: "index.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/resolve/resolve-cjs.js",
+            displayname: "resolve-cjs.js",
+            dirname: "src/extract/resolve",
+            group: "extract/resolve",
+          },
+          {
+            id: "src/extract/utl/detect-pre-compilation-ness.js",
+            displayname: "detect-pre-compilation-ness.js",
+            dirname: "src/extract/utl",
+            group: "extract/utl",
+          },
+          {
+            id: "src/extract/utl/compare.js",
+            displayname: "compare.js",
+            dirname: "src/extract/utl",
+            group: "extract/utl",
+          },
+          {
+            id: "src/extract/utl/extract-module-attributes.js",
+            displayname: "extract-module-attributes.js",
+            dirname: "src/extract/utl",
+            group: "extract/utl",
+          },
+          {
+            id: "src/main/files-and-dirs/normalize.js",
+            displayname: "normalize.js",
+            dirname: "src/main/files-and-dirs",
+            group: "main/files-and-dirs",
+          },
+          {
+            id: "src/main/options/normalize.js",
+            displayname: "normalize.js",
+            dirname: "src/main/options",
+            group: "main/options",
+          },
+          {
+            id: "src/main/options/defaults.json",
+            displayname: "defaults.json",
+            dirname: "src/main/options",
+            group: "main/options",
+          },
+          {
+            id: "src/main/utl/normalize-re-properties.js",
+            displayname: "normalize-re-properties.js",
+            dirname: "src/main/utl",
+            group: "main/utl",
+          },
+          {
+            id: "src/main/options/validate.js",
+            displayname: "validate.js",
+            dirname: "src/main/options",
+            group: "main/options",
+          },
+          {
+            id: "src/report/index.js",
+            displayname: "index.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/report/anon/index.js",
+            displayname: "index.js",
+            dirname: "src/report/anon",
+            group: "report/anon",
+          },
+          {
+            id: "src/report/anon/anonymize-path.js",
+            displayname: "anonymize-path.js",
+            dirname: "src/report/anon",
+            group: "report/anon",
+          },
+          {
+            id: "src/report/anon/anonymize-path-element.js",
+            displayname: "anonymize-path-element.js",
+            dirname: "src/report/anon",
+            group: "report/anon",
+          },
+          {
+            id: "src/report/anon/random-string.js",
+            displayname: "random-string.js",
+            dirname: "src/report/anon",
+            group: "report/anon",
+          },
+          {
+            id: "src/report/csv.js",
+            displayname: "csv.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/report/utl/dependency-to-incidence-transformer.js",
+            displayname: "dependency-to-incidence-transformer.js",
+            dirname: "src/report/utl",
+            group: "report/utl",
+          },
+          {
+            id: "src/report/dot/index.js",
+            displayname: "index.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/graph-utl/filterbank.js",
+            displayname: "filterbank.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/report/dot/dot.template.js",
+            displayname: "dot.template.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/report/dot/module-utl.js",
+            displayname: "module-utl.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/report/dot/theming.js",
+            displayname: "theming.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/report/dot/default-theme.json",
+            displayname: "default-theme.json",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/report/dot/prepare-custom-level.js",
+            displayname: "prepare-custom-level.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/graph-utl/consolidate-to-pattern.js",
+            displayname: "consolidate-to-pattern.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/graph-utl/consolidate-module-dependencies.js",
+            displayname: "consolidate-module-dependencies.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/graph-utl/consolidate-modules.js",
+            displayname: "consolidate-modules.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/graph-utl/strip-self-transitions.js",
+            displayname: "strip-self-transitions.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/report/dot/prepare-flat-level.js",
+            displayname: "prepare-flat-level.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/report/dot/prepare-folder-level.js",
+            displayname: "prepare-folder-level.js",
+            dirname: "src/report/dot",
+            group: "report/dot",
+          },
+          {
+            id: "src/graph-utl/consolidate-to-folder.js",
+            displayname: "consolidate-to-folder.js",
+            dirname: "src/graph-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/report/error.js",
+            displayname: "error.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/utl/wrap-and-indent.js",
+            displayname: "wrap-and-indent.js",
+            dirname: "src/utl",
+            group: "unknown",
+          },
+          {
+            id: "src/report/error-html/index.js",
+            displayname: "index.js",
+            dirname: "src/report/error-html",
+            group: "report/error-html",
+          },
+          {
+            id: "src/report/error-html/error-html.template.js",
+            displayname: "error-html.template.js",
+            dirname: "src/report/error-html",
+            group: "report/error-html",
+          },
+          {
+            id: "src/report/error-html/utl.js",
+            displayname: "utl.js",
+            dirname: "src/report/error-html",
+            group: "report/error-html",
+          },
+          {
+            id: "src/report/error-long.js",
+            displayname: "error-long.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/report/html/index.js",
+            displayname: "index.js",
+            dirname: "src/report/html",
+            group: "report/html",
+          },
+          {
+            id: "src/report/html/html.template.js",
+            displayname: "html.template.js",
+            dirname: "src/report/html",
+            group: "report/html",
+          },
+          {
+            id: "src/report/identity.js",
+            displayname: "identity.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/report/json.js",
+            displayname: "json.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/report/plugins/index.js",
+            displayname: "index.js",
+            dirname: "src/report/plugins",
+            group: "report/plugins",
+          },
+          {
+            id: "src/report/teamcity.js",
+            displayname: "teamcity.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/report/text.js",
+            displayname: "text.js",
+            dirname: "src/report",
+            group: "unknown",
+          },
+          {
+            id: "src/main/report-wrap.js",
+            displayname: "report-wrap.js",
+            dirname: "src/main",
+            group: "unknown",
+          },
+          {
+            id: "src/main/resolve-options/normalize.js",
+            displayname: "normalize.js",
+            dirname: "src/main/resolve-options",
+            group: "main/resolve-options",
+          },
+          {
+            id: "src/main/rule-set/normalize.js",
+            displayname: "normalize.js",
+            dirname: "src/main/rule-set",
+            group: "main/rule-set",
+          },
+          {
+            id: "src/main/rule-set/validate.js",
+            displayname: "validate.js",
+            dirname: "src/main/rule-set",
+            group: "main/rule-set",
+          },
+          {
+            id: "src/schema/configuration.schema.json",
+            displayname: "configuration.schema.json",
+            dirname: "src/schema",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/normalize-options.js",
+            displayname: "normalize-options.js",
+            dirname: "src/cli",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/defaults.json",
+            displayname: "defaults.json",
+            dirname: "src/cli",
+            group: "unknown",
+          },
+          {
+            id: "src/config-utl/extract-depcruise-config/index.js",
+            displayname: "index.js",
+            dirname: "src/config-utl/extract-depcruise-config",
+            group: "config-utl/extract-depcruise-config",
+          },
+          {
+            id: "src/config-utl/extract-depcruise-config/merge-configs.js",
+            displayname: "merge-configs.js",
+            dirname: "src/config-utl/extract-depcruise-config",
+            group: "config-utl/extract-depcruise-config",
+          },
+          {
+            id: "src/config-utl/extract-depcruise-config/read-config.js",
+            displayname: "read-config.js",
+            dirname: "src/config-utl/extract-depcruise-config",
+            group: "config-utl/extract-depcruise-config",
+          },
+          {
+            id: "src/cli/utl/io.js",
+            displayname: "io.js",
+            dirname: "src/cli/utl",
+            group: "cli/utl",
+          },
+          {
+            id: "src/cli/utl/validate-file-existence.js",
+            displayname: "validate-file-existence.js",
+            dirname: "src/cli/utl",
+            group: "cli/utl",
+          },
+          {
+            id: "src/cli/validate-node-environment.js",
+            displayname: "validate-node-environment.js",
+            dirname: "src/cli",
+            group: "unknown",
+          },
+          {
+            id: "bin/dependency-cruise.js",
+            displayname: "dependency-cruise.js",
+            dirname: "bin",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/index.js",
+            displayname: "index.js",
+            dirname: "src/cli",
+            group: "unknown",
+          },
+          {
+            id: "src/config-utl/extract-babel-config.js",
+            displayname: "extract-babel-config.js",
+            dirname: "src/config-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/config-utl/make-absolute.js",
+            displayname: "make-absolute.js",
+            dirname: "src/config-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/config-utl/extract-ts-config.js",
+            displayname: "extract-ts-config.js",
+            dirname: "src/config-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/config-utl/extract-webpack-resolve-config.js",
+            displayname: "extract-webpack-resolve-config.js",
+            dirname: "src/config-utl",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/format-meta-info.js",
+            displayname: "format-meta-info.js",
+            dirname: "src/cli",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/init-config/index.js",
+            displayname: "index.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/build-config.js",
+            displayname: "build-config.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/config.js.template.js",
+            displayname: "config.js.template.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/utl.js",
+            displayname: "utl.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/environment-helpers.js",
+            displayname: "environment-helpers.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/get-user-input.js",
+            displayname: "get-user-input.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/inquirer-validators.js",
+            displayname: "inquirer-validators.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/normalize-init-options.js",
+            displayname: "normalize-init-options.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/write-config.js",
+            displayname: "write-config.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/init-config/write-run-scripts-to-manifest.js",
+            displayname: "write-run-scripts-to-manifest.js",
+            dirname: "src/cli/init-config",
+            group: "cli/init-config",
+          },
+          {
+            id: "src/cli/listeners/cli-feedback/index.js",
+            displayname: "index.js",
+            dirname: "src/cli/listeners/cli-feedback",
+            group: "cli/listeners",
+          },
+          {
+            id: "src/cli/listeners/performance-log/index.js",
+            displayname: "index.js",
+            dirname: "src/cli/listeners/performance-log",
+            group: "cli/listeners",
+          },
+          {
+            id: "src/cli/listeners/performance-log/handlers.js",
+            displayname: "handlers.js",
+            dirname: "src/cli/listeners/performance-log",
+            group: "cli/listeners",
+          },
+          {
+            id: "src/cli/listeners/performance-log/format-helpers.js",
+            displayname: "format-helpers.js",
+            dirname: "src/cli/listeners/performance-log",
+            group: "cli/listeners",
+          },
+          {
+            id: "bin/wrap-stream-in-html.js",
+            displayname: "wrap-stream-in-html.js",
+            dirname: "bin",
+            group: "unknown",
+          },
+          {
+            id: "src/cli/tools/wrap-stream-in-html.js",
+            displayname: "wrap-stream-in-html.js",
+            dirname: "src/cli/tools",
+            group: "cli/tools",
+          },
+        ],
+        links: [
+          {
+            source: "bin/depcruise-fmt.js",
+            target: "src/cli/format.js",
+            displayname: "bin/depcruise-fmt.js -><br/>src/cli/format.js",
+          },
+          {
+            source: "bin/depcruise-fmt.js",
+            target: "src/cli/validate-node-environment.js",
+            displayname:
+              "bin/depcruise-fmt.js -><br/>src/cli/validate-node-environment.js",
+          },
+          {
+            source: "src/cli/format.js",
+            target: "src/main/index.js",
+            displayname: "src/cli/format.js -><br/>src/main/index.js",
+          },
+          {
+            source: "src/cli/format.js",
+            target: "src/cli/normalize-options.js",
+            displayname:
+              "src/cli/format.js -><br/>src/cli/normalize-options.js",
+          },
+          {
+            source: "src/cli/format.js",
+            target: "src/cli/utl/io.js",
+            displayname: "src/cli/format.js -><br/>src/cli/utl/io.js",
+          },
+          {
+            source: "src/cli/format.js",
+            target: "src/cli/utl/validate-file-existence.js",
+            displayname:
+              "src/cli/format.js -><br/>src/cli/utl/validate-file-existence.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/enrich/index.js",
+            displayname: "src/main/index.js -><br/>src/enrich/index.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/extract/index.js",
+            displayname: "src/main/index.js -><br/>src/extract/index.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/extract/transpile/meta.js",
+            displayname:
+              "src/main/index.js -><br/>src/extract/transpile/meta.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/schema/cruise-result.schema.json",
+            displayname:
+              "src/main/index.js -><br/>src/schema/cruise-result.schema.json",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/utl/bus.js",
+            displayname: "src/main/index.js -><br/>src/utl/bus.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/files-and-dirs/normalize.js",
+            displayname:
+              "src/main/index.js -><br/>src/main/files-and-dirs/normalize.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/options/normalize.js",
+            displayname:
+              "src/main/index.js -><br/>src/main/options/normalize.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/options/validate.js",
+            displayname:
+              "src/main/index.js -><br/>src/main/options/validate.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/report-wrap.js",
+            displayname: "src/main/index.js -><br/>src/main/report-wrap.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/resolve-options/normalize.js",
+            displayname:
+              "src/main/index.js -><br/>src/main/resolve-options/normalize.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/rule-set/normalize.js",
+            displayname:
+              "src/main/index.js -><br/>src/main/rule-set/normalize.js",
+          },
+          {
+            source: "src/main/index.js",
+            target: "src/main/rule-set/validate.js",
+            displayname:
+              "src/main/index.js -><br/>src/main/rule-set/validate.js",
+          },
+          {
+            source: "src/enrich/index.js",
+            target: "src/enrich/clear-caches.js",
+            displayname:
+              "src/enrich/index.js -><br/>src/enrich/clear-caches.js",
+          },
+          {
+            source: "src/enrich/index.js",
+            target: "src/enrich/enrich-modules.js",
+            displayname:
+              "src/enrich/index.js -><br/>src/enrich/enrich-modules.js",
+          },
+          {
+            source: "src/enrich/index.js",
+            target: "src/enrich/summarize/index.js",
+            displayname:
+              "src/enrich/index.js -><br/>src/enrich/summarize/index.js",
+          },
+          {
+            source: "src/enrich/clear-caches.js",
+            target: "src/enrich/derive/utl.js",
+            displayname:
+              "src/enrich/clear-caches.js -><br/>src/enrich/derive/utl.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/graph-utl/add-focus.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/graph-utl/add-focus.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/utl/bus.js",
+            displayname: "src/enrich/enrich-modules.js -><br/>src/utl/bus.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/utl/bus-log-levels.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/utl/bus-log-levels.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/enrich/add-validations.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/enrich/add-validations.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/enrich/derive/circular/index.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/enrich/derive/circular/index.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/enrich/derive/dependents/index.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/enrich/derive/dependents/index.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/enrich/derive/orphan/index.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/enrich/derive/orphan/index.js",
+          },
+          {
+            source: "src/enrich/enrich-modules.js",
+            target: "src/enrich/derive/reachable/index.js",
+            displayname:
+              "src/enrich/enrich-modules.js -><br/>src/enrich/derive/reachable/index.js",
+          },
+          {
+            source: "src/graph-utl/add-focus.js",
+            target: "src/graph-utl/match-facade.js",
+            displayname:
+              "src/graph-utl/add-focus.js -><br/>src/graph-utl/match-facade.js",
+          },
+          {
+            source: "src/enrich/add-validations.js",
+            target: "src/validate/index.js",
+            displayname:
+              "src/enrich/add-validations.js -><br/>src/validate/index.js",
+          },
+          {
+            source: "src/validate/index.js",
+            target: "src/validate/match-dependency-rule.js",
+            displayname:
+              "src/validate/index.js -><br/>src/validate/match-dependency-rule.js",
+          },
+          {
+            source: "src/validate/index.js",
+            target: "src/validate/match-module-rule.js",
+            displayname:
+              "src/validate/index.js -><br/>src/validate/match-module-rule.js",
+          },
+          {
+            source: "src/validate/index.js",
+            target: "src/validate/violates-required-rule.js",
+            displayname:
+              "src/validate/index.js -><br/>src/validate/violates-required-rule.js",
+          },
+          {
+            source: "src/validate/match-dependency-rule.js",
+            target: "src/validate/is-module-only-rule.js",
+            displayname:
+              "src/validate/match-dependency-rule.js -><br/>src/validate/is-module-only-rule.js",
+          },
+          {
+            source: "src/validate/match-dependency-rule.js",
+            target: "src/validate/matchers.js",
+            displayname:
+              "src/validate/match-dependency-rule.js -><br/>src/validate/matchers.js",
+          },
+          {
+            source: "src/validate/match-dependency-rule.js",
+            target: "src/validate/utl.js",
+            displayname:
+              "src/validate/match-dependency-rule.js -><br/>src/validate/utl.js",
+          },
+          {
+            source: "src/validate/matchers.js",
+            target: "src/utl/array-util.js",
+            displayname:
+              "src/validate/matchers.js -><br/>src/utl/array-util.js",
+          },
+          {
+            source: "src/validate/match-module-rule.js",
+            target: "src/validate/is-module-only-rule.js",
+            displayname:
+              "src/validate/match-module-rule.js -><br/>src/validate/is-module-only-rule.js",
+          },
+          {
+            source: "src/validate/match-module-rule.js",
+            target: "src/validate/matchers.js",
+            displayname:
+              "src/validate/match-module-rule.js -><br/>src/validate/matchers.js",
+          },
+          {
+            source: "src/validate/match-module-rule.js",
+            target: "src/validate/utl.js",
+            displayname:
+              "src/validate/match-module-rule.js -><br/>src/validate/utl.js",
+          },
+          {
+            source: "src/validate/violates-required-rule.js",
+            target: "src/validate/matchers.js",
+            displayname:
+              "src/validate/violates-required-rule.js -><br/>src/validate/matchers.js",
+          },
+          {
+            source: "src/validate/violates-required-rule.js",
+            target: "src/validate/utl.js",
+            displayname:
+              "src/validate/violates-required-rule.js -><br/>src/validate/utl.js",
+          },
+          {
+            source: "src/enrich/derive/circular/index.js",
+            target: "src/enrich/derive/circular/get-cycle.js",
+            displayname:
+              "src/enrich/derive/circular/index.js -><br/>src/enrich/derive/circular/get-cycle.js",
+          },
+          {
+            source: "src/enrich/derive/circular/get-cycle.js",
+            target: "src/enrich/derive/utl.js",
+            displayname:
+              "src/enrich/derive/circular/get-cycle.js -><br/>src/enrich/derive/utl.js",
+          },
+          {
+            source: "src/enrich/derive/dependents/index.js",
+            target: "src/enrich/derive/dependents/get-dependents.js",
+            displayname:
+              "src/enrich/derive/dependents/index.js -><br/>src/enrich/derive/dependents/get-dependents.js",
+          },
+          {
+            source: "src/enrich/derive/dependents/get-dependents.js",
+            target: "src/enrich/derive/utl.js",
+            displayname:
+              "src/enrich/derive/dependents/get-dependents.js -><br/>src/enrich/derive/utl.js",
+          },
+          {
+            source: "src/enrich/derive/orphan/index.js",
+            target: "src/enrich/derive/orphan/is-orphan.js",
+            displayname:
+              "src/enrich/derive/orphan/index.js -><br/>src/enrich/derive/orphan/is-orphan.js",
+          },
+          {
+            source: "src/enrich/derive/orphan/is-orphan.js",
+            target: "src/enrich/derive/utl.js",
+            displayname:
+              "src/enrich/derive/orphan/is-orphan.js -><br/>src/enrich/derive/utl.js",
+          },
+          {
+            source: "src/enrich/derive/reachable/index.js",
+            target: "src/validate/matchers.js",
+            displayname:
+              "src/enrich/derive/reachable/index.js -><br/>src/validate/matchers.js",
+          },
+          {
+            source: "src/enrich/derive/reachable/index.js",
+            target: "src/validate/utl.js",
+            displayname:
+              "src/enrich/derive/reachable/index.js -><br/>src/validate/utl.js",
+          },
+          {
+            source: "src/enrich/derive/reachable/index.js",
+            target: "src/enrich/derive/reachable/get-path.js",
+            displayname:
+              "src/enrich/derive/reachable/index.js -><br/>src/enrich/derive/reachable/get-path.js",
+          },
+          {
+            source: "src/enrich/derive/reachable/get-path.js",
+            target: "src/enrich/derive/utl.js",
+            displayname:
+              "src/enrich/derive/reachable/get-path.js -><br/>src/enrich/derive/utl.js",
+          },
+          {
+            source: "src/enrich/summarize/index.js",
+            target: "src/enrich/summarize/add-rule-set-used.js",
+            displayname:
+              "src/enrich/summarize/index.js -><br/>src/enrich/summarize/add-rule-set-used.js",
+          },
+          {
+            source: "src/enrich/summarize/index.js",
+            target: "src/enrich/summarize/summarize-modules.js",
+            displayname:
+              "src/enrich/summarize/index.js -><br/>src/enrich/summarize/summarize-modules.js",
+          },
+          {
+            source: "src/enrich/summarize/index.js",
+            target: "src/enrich/summarize/summarize-options.js",
+            displayname:
+              "src/enrich/summarize/index.js -><br/>src/enrich/summarize/summarize-options.js",
+          },
+          {
+            source: "src/enrich/summarize/summarize-modules.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/enrich/summarize/summarize-modules.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/enrich/summarize/summarize-modules.js",
+            target: "src/graph-utl/rule-set.js",
+            displayname:
+              "src/enrich/summarize/summarize-modules.js -><br/>src/graph-utl/rule-set.js",
+          },
+          {
+            source: "src/enrich/summarize/summarize-modules.js",
+            target: "src/enrich/summarize/de-duplicate-violations.js",
+            displayname:
+              "src/enrich/summarize/summarize-modules.js -><br/>src/enrich/summarize/de-duplicate-violations.js",
+          },
+          {
+            source: "src/extract/index.js",
+            target: "src/utl/bus.js",
+            displayname: "src/extract/index.js -><br/>src/utl/bus.js",
+          },
+          {
+            source: "src/extract/index.js",
+            target: "src/utl/bus-log-levels.js",
+            displayname:
+              "src/extract/index.js -><br/>src/utl/bus-log-levels.js",
+          },
+          {
+            source: "src/extract/index.js",
+            target: "src/extract/clear-caches.js",
+            displayname:
+              "src/extract/index.js -><br/>src/extract/clear-caches.js",
+          },
+          {
+            source: "src/extract/index.js",
+            target: "src/extract/gather-initial-sources.js",
+            displayname:
+              "src/extract/index.js -><br/>src/extract/gather-initial-sources.js",
+          },
+          {
+            source: "src/extract/index.js",
+            target: "src/extract/get-dependencies.js",
+            displayname:
+              "src/extract/index.js -><br/>src/extract/get-dependencies.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/parse/to-javascript-ast.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/parse/to-javascript-ast.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/parse/to-swc-ast.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/parse/to-swc-ast.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/parse/to-typescript-ast.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/parse/to-typescript-ast.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/resolve/external-module-helpers.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/resolve/external-module-helpers.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/resolve/get-manifest/index.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/resolve/get-manifest/index.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/resolve/resolve.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/resolve/resolve.js",
+          },
+          {
+            source: "src/extract/clear-caches.js",
+            target: "src/extract/resolve/resolve-amd.js",
+            displayname:
+              "src/extract/clear-caches.js -><br/>src/extract/resolve/resolve-amd.js",
+          },
+          {
+            source: "src/extract/parse/to-javascript-ast.js",
+            target: "src/extract/transpile/index.js",
+            displayname:
+              "src/extract/parse/to-javascript-ast.js -><br/>src/extract/transpile/index.js",
+          },
+          {
+            source: "src/extract/parse/to-javascript-ast.js",
+            target: "src/extract/utl/get-extension.js",
+            displayname:
+              "src/extract/parse/to-javascript-ast.js -><br/>src/extract/utl/get-extension.js",
+          },
+          {
+            source: "src/extract/transpile/index.js",
+            target: "src/extract/transpile/meta.js",
+            displayname:
+              "src/extract/transpile/index.js -><br/>src/extract/transpile/meta.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/parse/to-swc-ast.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/parse/to-swc-ast.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/babel-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/babel-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/coffeescript-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/coffeescript-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/javascript-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/javascript-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/livescript-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/livescript-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/svelte-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/svelte-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/typescript-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/typescript-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/meta.js",
+            target: "src/extract/transpile/vue-template-wrap.js",
+            displayname:
+              "src/extract/transpile/meta.js -><br/>src/extract/transpile/vue-template-wrap.js",
+          },
+          {
+            source: "src/extract/transpile/svelte-wrap.js",
+            target: "src/extract/transpile/svelte-preprocess.js",
+            displayname:
+              "src/extract/transpile/svelte-wrap.js -><br/>src/extract/transpile/svelte-preprocess.js",
+          },
+          {
+            source: "src/extract/resolve/external-module-helpers.js",
+            target: "src/extract/resolve/module-classifiers.js",
+            displayname:
+              "src/extract/resolve/external-module-helpers.js -><br/>src/extract/resolve/module-classifiers.js",
+          },
+          {
+            source: "src/extract/resolve/external-module-helpers.js",
+            target: "src/extract/resolve/resolve.js",
+            displayname:
+              "src/extract/resolve/external-module-helpers.js -><br/>src/extract/resolve/resolve.js",
+          },
+          {
+            source: "src/extract/resolve/module-classifiers.js",
+            target: "src/extract/utl/get-extension.js",
+            displayname:
+              "src/extract/resolve/module-classifiers.js -><br/>src/extract/utl/get-extension.js",
+          },
+          {
+            source: "src/extract/resolve/resolve.js",
+            target: "src/extract/utl/path-to-posix.js",
+            displayname:
+              "src/extract/resolve/resolve.js -><br/>src/extract/utl/path-to-posix.js",
+          },
+          {
+            source: "src/extract/resolve/resolve.js",
+            target: "src/extract/utl/strip-query-parameters.js",
+            displayname:
+              "src/extract/resolve/resolve.js -><br/>src/extract/utl/strip-query-parameters.js",
+          },
+          {
+            source: "src/extract/resolve/get-manifest/index.js",
+            target: "src/extract/resolve/get-manifest/merge-manifests.js",
+            displayname:
+              "src/extract/resolve/get-manifest/index.js -><br/>src/extract/resolve/get-manifest/merge-manifests.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-amd.js",
+            target: "src/extract/utl/path-to-posix.js",
+            displayname:
+              "src/extract/resolve/resolve-amd.js -><br/>src/extract/utl/path-to-posix.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-amd.js",
+            target: "src/extract/resolve/determine-dependency-types.js",
+            displayname:
+              "src/extract/resolve/resolve-amd.js -><br/>src/extract/resolve/determine-dependency-types.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-amd.js",
+            target: "src/extract/resolve/get-manifest/index.js",
+            displayname:
+              "src/extract/resolve/resolve-amd.js -><br/>src/extract/resolve/get-manifest/index.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-amd.js",
+            target: "src/extract/resolve/module-classifiers.js",
+            displayname:
+              "src/extract/resolve/resolve-amd.js -><br/>src/extract/resolve/module-classifiers.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-amd.js",
+            target: "src/extract/resolve/resolve-helpers.js",
+            displayname:
+              "src/extract/resolve/resolve-amd.js -><br/>src/extract/resolve/resolve-helpers.js",
+          },
+          {
+            source: "src/extract/resolve/determine-dependency-types.js",
+            target: "src/extract/resolve/external-module-helpers.js",
+            displayname:
+              "src/extract/resolve/determine-dependency-types.js -><br/>src/extract/resolve/external-module-helpers.js",
+          },
+          {
+            source: "src/extract/resolve/determine-dependency-types.js",
+            target: "src/extract/resolve/module-classifiers.js",
+            displayname:
+              "src/extract/resolve/determine-dependency-types.js -><br/>src/extract/resolve/module-classifiers.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-helpers.js",
+            target: "src/extract/resolve/external-module-helpers.js",
+            displayname:
+              "src/extract/resolve/resolve-helpers.js -><br/>src/extract/resolve/external-module-helpers.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-helpers.js",
+            target: "src/extract/resolve/module-classifiers.js",
+            displayname:
+              "src/extract/resolve/resolve-helpers.js -><br/>src/extract/resolve/module-classifiers.js",
+          },
+          {
+            source: "src/extract/gather-initial-sources.js",
+            target: "src/graph-utl/match-facade.js",
+            displayname:
+              "src/extract/gather-initial-sources.js -><br/>src/graph-utl/match-facade.js",
+          },
+          {
+            source: "src/extract/gather-initial-sources.js",
+            target: "src/extract/transpile/meta.js",
+            displayname:
+              "src/extract/gather-initial-sources.js -><br/>src/extract/transpile/meta.js",
+          },
+          {
+            source: "src/extract/gather-initial-sources.js",
+            target: "src/extract/utl/path-to-posix.js",
+            displayname:
+              "src/extract/gather-initial-sources.js -><br/>src/extract/utl/path-to-posix.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/utl/array-util.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/utl/array-util.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/ast-extractors/extract-amd-deps.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/ast-extractors/extract-amd-deps.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/ast-extractors/extract-cjs-deps.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/ast-extractors/extract-cjs-deps.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/ast-extractors/extract-es6-deps.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/ast-extractors/extract-es6-deps.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/ast-extractors/extract-swc-deps.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/ast-extractors/extract-swc-deps.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/ast-extractors/extract-typescript-deps.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/ast-extractors/extract-typescript-deps.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/parse/to-javascript-ast.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/parse/to-javascript-ast.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/parse/to-swc-ast.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/parse/to-swc-ast.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/parse/to-typescript-ast.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/parse/to-typescript-ast.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/resolve/index.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/resolve/index.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/utl/detect-pre-compilation-ness.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/utl/detect-pre-compilation-ness.js",
+          },
+          {
+            source: "src/extract/get-dependencies.js",
+            target: "src/extract/utl/extract-module-attributes.js",
+            displayname:
+              "src/extract/get-dependencies.js -><br/>src/extract/utl/extract-module-attributes.js",
+          },
+          {
+            source: "src/extract/ast-extractors/extract-amd-deps.js",
+            target: "src/extract/ast-extractors/estree-helpers.js",
+            displayname:
+              "src/extract/ast-extractors/extract-amd-deps.js -><br/>src/extract/ast-extractors/estree-helpers.js",
+          },
+          {
+            source: "src/extract/ast-extractors/extract-amd-deps.js",
+            target: "src/extract/ast-extractors/extract-cjs-deps.js",
+            displayname:
+              "src/extract/ast-extractors/extract-amd-deps.js -><br/>src/extract/ast-extractors/extract-cjs-deps.js",
+          },
+          {
+            source: "src/extract/ast-extractors/extract-cjs-deps.js",
+            target: "src/extract/ast-extractors/estree-helpers.js",
+            displayname:
+              "src/extract/ast-extractors/extract-cjs-deps.js -><br/>src/extract/ast-extractors/estree-helpers.js",
+          },
+          {
+            source: "src/extract/ast-extractors/extract-es6-deps.js",
+            target: "src/extract/ast-extractors/estree-helpers.js",
+            displayname:
+              "src/extract/ast-extractors/extract-es6-deps.js -><br/>src/extract/ast-extractors/estree-helpers.js",
+          },
+          {
+            source: "src/extract/ast-extractors/extract-swc-deps.js",
+            target: "src/extract/ast-extractors/swc-dependency-visitor.js",
+            displayname:
+              "src/extract/ast-extractors/extract-swc-deps.js -><br/>src/extract/ast-extractors/swc-dependency-visitor.js",
+          },
+          {
+            source: "src/extract/resolve/index.js",
+            target: "src/extract/utl/path-to-posix.js",
+            displayname:
+              "src/extract/resolve/index.js -><br/>src/extract/utl/path-to-posix.js",
+          },
+          {
+            source: "src/extract/resolve/index.js",
+            target: "src/extract/resolve/module-classifiers.js",
+            displayname:
+              "src/extract/resolve/index.js -><br/>src/extract/resolve/module-classifiers.js",
+          },
+          {
+            source: "src/extract/resolve/index.js",
+            target: "src/extract/resolve/resolve-amd.js",
+            displayname:
+              "src/extract/resolve/index.js -><br/>src/extract/resolve/resolve-amd.js",
+          },
+          {
+            source: "src/extract/resolve/index.js",
+            target: "src/extract/resolve/resolve-cjs.js",
+            displayname:
+              "src/extract/resolve/index.js -><br/>src/extract/resolve/resolve-cjs.js",
+          },
+          {
+            source: "src/extract/resolve/index.js",
+            target: "src/extract/resolve/resolve-helpers.js",
+            displayname:
+              "src/extract/resolve/index.js -><br/>src/extract/resolve/resolve-helpers.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-cjs.js",
+            target: "src/extract/utl/path-to-posix.js",
+            displayname:
+              "src/extract/resolve/resolve-cjs.js -><br/>src/extract/utl/path-to-posix.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-cjs.js",
+            target: "src/extract/resolve/determine-dependency-types.js",
+            displayname:
+              "src/extract/resolve/resolve-cjs.js -><br/>src/extract/resolve/determine-dependency-types.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-cjs.js",
+            target: "src/extract/resolve/get-manifest/index.js",
+            displayname:
+              "src/extract/resolve/resolve-cjs.js -><br/>src/extract/resolve/get-manifest/index.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-cjs.js",
+            target: "src/extract/resolve/module-classifiers.js",
+            displayname:
+              "src/extract/resolve/resolve-cjs.js -><br/>src/extract/resolve/module-classifiers.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-cjs.js",
+            target: "src/extract/resolve/resolve.js",
+            displayname:
+              "src/extract/resolve/resolve-cjs.js -><br/>src/extract/resolve/resolve.js",
+          },
+          {
+            source: "src/extract/resolve/resolve-cjs.js",
+            target: "src/extract/resolve/resolve-helpers.js",
+            displayname:
+              "src/extract/resolve/resolve-cjs.js -><br/>src/extract/resolve/resolve-helpers.js",
+          },
+          {
+            source: "src/extract/utl/detect-pre-compilation-ness.js",
+            target: "src/extract/utl/compare.js",
+            displayname:
+              "src/extract/utl/detect-pre-compilation-ness.js -><br/>src/extract/utl/compare.js",
+          },
+          {
+            source: "src/main/options/normalize.js",
+            target: "src/main/utl/normalize-re-properties.js",
+            displayname:
+              "src/main/options/normalize.js -><br/>src/main/utl/normalize-re-properties.js",
+          },
+          {
+            source: "src/main/options/normalize.js",
+            target: "src/main/options/defaults.json",
+            displayname:
+              "src/main/options/normalize.js -><br/>src/main/options/defaults.json",
+          },
+          {
+            source: "src/main/options/validate.js",
+            target: "src/report/index.js",
+            displayname:
+              "src/main/options/validate.js -><br/>src/report/index.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/anon/index.js",
+            displayname: "src/report/index.js -><br/>src/report/anon/index.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/csv.js",
+            displayname: "src/report/index.js -><br/>src/report/csv.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/dot/index.js",
+            displayname: "src/report/index.js -><br/>src/report/dot/index.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/error.js",
+            displayname: "src/report/index.js -><br/>src/report/error.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/error-html/index.js",
+            displayname:
+              "src/report/index.js -><br/>src/report/error-html/index.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/error-long.js",
+            displayname: "src/report/index.js -><br/>src/report/error-long.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/html/index.js",
+            displayname: "src/report/index.js -><br/>src/report/html/index.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/identity.js",
+            displayname: "src/report/index.js -><br/>src/report/identity.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/json.js",
+            displayname: "src/report/index.js -><br/>src/report/json.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/plugins/index.js",
+            displayname:
+              "src/report/index.js -><br/>src/report/plugins/index.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/teamcity.js",
+            displayname: "src/report/index.js -><br/>src/report/teamcity.js",
+          },
+          {
+            source: "src/report/index.js",
+            target: "src/report/text.js",
+            displayname: "src/report/index.js -><br/>src/report/text.js",
+          },
+          {
+            source: "src/report/anon/index.js",
+            target: "src/report/anon/anonymize-path.js",
+            displayname:
+              "src/report/anon/index.js -><br/>src/report/anon/anonymize-path.js",
+          },
+          {
+            source: "src/report/anon/anonymize-path.js",
+            target: "src/report/anon/anonymize-path-element.js",
+            displayname:
+              "src/report/anon/anonymize-path.js -><br/>src/report/anon/anonymize-path-element.js",
+          },
+          {
+            source: "src/report/anon/anonymize-path-element.js",
+            target: "src/report/anon/random-string.js",
+            displayname:
+              "src/report/anon/anonymize-path-element.js -><br/>src/report/anon/random-string.js",
+          },
+          {
+            source: "src/report/csv.js",
+            target: "src/report/utl/dependency-to-incidence-transformer.js",
+            displayname:
+              "src/report/csv.js -><br/>src/report/utl/dependency-to-incidence-transformer.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/graph-utl/filterbank.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/graph-utl/filterbank.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/report/dot/dot.template.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/report/dot/dot.template.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/report/dot/module-utl.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/report/dot/module-utl.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/report/dot/prepare-custom-level.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/report/dot/prepare-custom-level.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/report/dot/prepare-flat-level.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/report/dot/prepare-flat-level.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/report/dot/prepare-folder-level.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/report/dot/prepare-folder-level.js",
+          },
+          {
+            source: "src/report/dot/index.js",
+            target: "src/report/dot/theming.js",
+            displayname:
+              "src/report/dot/index.js -><br/>src/report/dot/theming.js",
+          },
+          {
+            source: "src/graph-utl/filterbank.js",
+            target: "src/graph-utl/add-focus.js",
+            displayname:
+              "src/graph-utl/filterbank.js -><br/>src/graph-utl/add-focus.js",
+          },
+          {
+            source: "src/graph-utl/filterbank.js",
+            target: "src/graph-utl/match-facade.js",
+            displayname:
+              "src/graph-utl/filterbank.js -><br/>src/graph-utl/match-facade.js",
+          },
+          {
+            source: "src/report/dot/module-utl.js",
+            target: "src/report/dot/theming.js",
+            displayname:
+              "src/report/dot/module-utl.js -><br/>src/report/dot/theming.js",
+          },
+          {
+            source: "src/report/dot/theming.js",
+            target: "src/report/dot/default-theme.json",
+            displayname:
+              "src/report/dot/theming.js -><br/>src/report/dot/default-theme.json",
+          },
+          {
+            source: "src/report/dot/prepare-custom-level.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/report/dot/prepare-custom-level.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/report/dot/prepare-custom-level.js",
+            target: "src/graph-utl/consolidate-to-pattern.js",
+            displayname:
+              "src/report/dot/prepare-custom-level.js -><br/>src/graph-utl/consolidate-to-pattern.js",
+          },
+          {
+            source: "src/report/dot/prepare-custom-level.js",
+            target: "src/graph-utl/strip-self-transitions.js",
+            displayname:
+              "src/report/dot/prepare-custom-level.js -><br/>src/graph-utl/strip-self-transitions.js",
+          },
+          {
+            source: "src/report/dot/prepare-custom-level.js",
+            target: "src/report/dot/module-utl.js",
+            displayname:
+              "src/report/dot/prepare-custom-level.js -><br/>src/report/dot/module-utl.js",
+          },
+          {
+            source: "src/graph-utl/consolidate-to-pattern.js",
+            target: "src/graph-utl/consolidate-module-dependencies.js",
+            displayname:
+              "src/graph-utl/consolidate-to-pattern.js -><br/>src/graph-utl/consolidate-module-dependencies.js",
+          },
+          {
+            source: "src/graph-utl/consolidate-to-pattern.js",
+            target: "src/graph-utl/consolidate-modules.js",
+            displayname:
+              "src/graph-utl/consolidate-to-pattern.js -><br/>src/graph-utl/consolidate-modules.js",
+          },
+          {
+            source: "src/graph-utl/consolidate-module-dependencies.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/graph-utl/consolidate-module-dependencies.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/graph-utl/consolidate-modules.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/graph-utl/consolidate-modules.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/report/dot/prepare-flat-level.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/report/dot/prepare-flat-level.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/report/dot/prepare-flat-level.js",
+            target: "src/report/dot/module-utl.js",
+            displayname:
+              "src/report/dot/prepare-flat-level.js -><br/>src/report/dot/module-utl.js",
+          },
+          {
+            source: "src/report/dot/prepare-folder-level.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/report/dot/prepare-folder-level.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/report/dot/prepare-folder-level.js",
+            target: "src/graph-utl/consolidate-to-folder.js",
+            displayname:
+              "src/report/dot/prepare-folder-level.js -><br/>src/graph-utl/consolidate-to-folder.js",
+          },
+          {
+            source: "src/report/dot/prepare-folder-level.js",
+            target: "src/graph-utl/strip-self-transitions.js",
+            displayname:
+              "src/report/dot/prepare-folder-level.js -><br/>src/graph-utl/strip-self-transitions.js",
+          },
+          {
+            source: "src/report/dot/prepare-folder-level.js",
+            target: "src/report/dot/module-utl.js",
+            displayname:
+              "src/report/dot/prepare-folder-level.js -><br/>src/report/dot/module-utl.js",
+          },
+          {
+            source: "src/graph-utl/consolidate-to-folder.js",
+            target: "src/graph-utl/consolidate-module-dependencies.js",
+            displayname:
+              "src/graph-utl/consolidate-to-folder.js -><br/>src/graph-utl/consolidate-module-dependencies.js",
+          },
+          {
+            source: "src/graph-utl/consolidate-to-folder.js",
+            target: "src/graph-utl/consolidate-modules.js",
+            displayname:
+              "src/graph-utl/consolidate-to-folder.js -><br/>src/graph-utl/consolidate-modules.js",
+          },
+          {
+            source: "src/report/error.js",
+            target: "src/graph-utl/rule-set.js",
+            displayname: "src/report/error.js -><br/>src/graph-utl/rule-set.js",
+          },
+          {
+            source: "src/report/error.js",
+            target: "src/utl/wrap-and-indent.js",
+            displayname:
+              "src/report/error.js -><br/>src/utl/wrap-and-indent.js",
+          },
+          {
+            source: "src/report/error-html/index.js",
+            target: "src/report/error-html/error-html.template.js",
+            displayname:
+              "src/report/error-html/index.js -><br/>src/report/error-html/error-html.template.js",
+          },
+          {
+            source: "src/report/error-html/index.js",
+            target: "src/report/error-html/utl.js",
+            displayname:
+              "src/report/error-html/index.js -><br/>src/report/error-html/utl.js",
+          },
+          {
+            source: "src/report/error-long.js",
+            target: "src/report/error.js",
+            displayname: "src/report/error-long.js -><br/>src/report/error.js",
+          },
+          {
+            source: "src/report/html/index.js",
+            target: "src/report/utl/dependency-to-incidence-transformer.js",
+            displayname:
+              "src/report/html/index.js -><br/>src/report/utl/dependency-to-incidence-transformer.js",
+          },
+          {
+            source: "src/report/html/index.js",
+            target: "src/report/html/html.template.js",
+            displayname:
+              "src/report/html/index.js -><br/>src/report/html/html.template.js",
+          },
+          {
+            source: "src/main/report-wrap.js",
+            target: "src/enrich/summarize/summarize-modules.js",
+            displayname:
+              "src/main/report-wrap.js -><br/>src/enrich/summarize/summarize-modules.js",
+          },
+          {
+            source: "src/main/report-wrap.js",
+            target: "src/graph-utl/compare.js",
+            displayname:
+              "src/main/report-wrap.js -><br/>src/graph-utl/compare.js",
+          },
+          {
+            source: "src/main/report-wrap.js",
+            target: "src/graph-utl/consolidate-to-pattern.js",
+            displayname:
+              "src/main/report-wrap.js -><br/>src/graph-utl/consolidate-to-pattern.js",
+          },
+          {
+            source: "src/main/report-wrap.js",
+            target: "src/graph-utl/filterbank.js",
+            displayname:
+              "src/main/report-wrap.js -><br/>src/graph-utl/filterbank.js",
+          },
+          {
+            source: "src/main/report-wrap.js",
+            target: "src/graph-utl/strip-self-transitions.js",
+            displayname:
+              "src/main/report-wrap.js -><br/>src/graph-utl/strip-self-transitions.js",
+          },
+          {
+            source: "src/main/report-wrap.js",
+            target: "src/report/index.js",
+            displayname: "src/main/report-wrap.js -><br/>src/report/index.js",
+          },
+          {
+            source: "src/main/resolve-options/normalize.js",
+            target: "src/extract/transpile/meta.js",
+            displayname:
+              "src/main/resolve-options/normalize.js -><br/>src/extract/transpile/meta.js",
+          },
+          {
+            source: "src/main/resolve-options/normalize.js",
+            target: "src/graph-utl/rule-set.js",
+            displayname:
+              "src/main/resolve-options/normalize.js -><br/>src/graph-utl/rule-set.js",
+          },
+          {
+            source: "src/main/rule-set/normalize.js",
+            target: "src/main/utl/normalize-re-properties.js",
+            displayname:
+              "src/main/rule-set/normalize.js -><br/>src/main/utl/normalize-re-properties.js",
+          },
+          {
+            source: "src/main/rule-set/validate.js",
+            target: "src/schema/configuration.schema.json",
+            displayname:
+              "src/main/rule-set/validate.js -><br/>src/schema/configuration.schema.json",
+          },
+          {
+            source: "src/main/rule-set/validate.js",
+            target: "src/main/options/validate.js",
+            displayname:
+              "src/main/rule-set/validate.js -><br/>src/main/options/validate.js",
+          },
+          {
+            source: "src/cli/normalize-options.js",
+            target: "src/config-utl/extract-depcruise-config/index.js",
+            displayname:
+              "src/cli/normalize-options.js -><br/>src/config-utl/extract-depcruise-config/index.js",
+          },
+          {
+            source: "src/cli/normalize-options.js",
+            target: "src/cli/defaults.json",
+            displayname:
+              "src/cli/normalize-options.js -><br/>src/cli/defaults.json",
+          },
+          {
+            source: "src/config-utl/extract-depcruise-config/index.js",
+            target: "src/extract/resolve/resolve.js",
+            displayname:
+              "src/config-utl/extract-depcruise-config/index.js -><br/>src/extract/resolve/resolve.js",
+          },
+          {
+            source: "src/config-utl/extract-depcruise-config/index.js",
+            target: "src/main/resolve-options/normalize.js",
+            displayname:
+              "src/config-utl/extract-depcruise-config/index.js -><br/>src/main/resolve-options/normalize.js",
+          },
+          {
+            source: "src/config-utl/extract-depcruise-config/index.js",
+            target: "src/config-utl/extract-depcruise-config/merge-configs.js",
+            displayname:
+              "src/config-utl/extract-depcruise-config/index.js -><br/>src/config-utl/extract-depcruise-config/merge-configs.js",
+          },
+          {
+            source: "src/config-utl/extract-depcruise-config/index.js",
+            target: "src/config-utl/extract-depcruise-config/read-config.js",
+            displayname:
+              "src/config-utl/extract-depcruise-config/index.js -><br/>src/config-utl/extract-depcruise-config/read-config.js",
+          },
+          {
+            source: "bin/dependency-cruise.js",
+            target: "src/cli/index.js",
+            displayname: "bin/dependency-cruise.js -><br/>src/cli/index.js",
+          },
+          {
+            source: "bin/dependency-cruise.js",
+            target: "src/cli/validate-node-environment.js",
+            displayname:
+              "bin/dependency-cruise.js -><br/>src/cli/validate-node-environment.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/config-utl/extract-babel-config.js",
+            displayname:
+              "src/cli/index.js -><br/>src/config-utl/extract-babel-config.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/config-utl/extract-ts-config.js",
+            displayname:
+              "src/cli/index.js -><br/>src/config-utl/extract-ts-config.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/config-utl/extract-webpack-resolve-config.js",
+            displayname:
+              "src/cli/index.js -><br/>src/config-utl/extract-webpack-resolve-config.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/main/index.js",
+            displayname: "src/cli/index.js -><br/>src/main/index.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/utl/bus.js",
+            displayname: "src/cli/index.js -><br/>src/utl/bus.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/format-meta-info.js",
+            displayname: "src/cli/index.js -><br/>src/cli/format-meta-info.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/init-config/index.js",
+            displayname: "src/cli/index.js -><br/>src/cli/init-config/index.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/listeners/cli-feedback/index.js",
+            displayname:
+              "src/cli/index.js -><br/>src/cli/listeners/cli-feedback/index.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/listeners/performance-log/index.js",
+            displayname:
+              "src/cli/index.js -><br/>src/cli/listeners/performance-log/index.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/normalize-options.js",
+            displayname: "src/cli/index.js -><br/>src/cli/normalize-options.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/utl/io.js",
+            displayname: "src/cli/index.js -><br/>src/cli/utl/io.js",
+          },
+          {
+            source: "src/cli/index.js",
+            target: "src/cli/utl/validate-file-existence.js",
+            displayname:
+              "src/cli/index.js -><br/>src/cli/utl/validate-file-existence.js",
+          },
+          {
+            source: "src/config-utl/extract-babel-config.js",
+            target: "src/config-utl/make-absolute.js",
+            displayname:
+              "src/config-utl/extract-babel-config.js -><br/>src/config-utl/make-absolute.js",
+          },
+          {
+            source: "src/config-utl/extract-webpack-resolve-config.js",
+            target: "src/config-utl/make-absolute.js",
+            displayname:
+              "src/config-utl/extract-webpack-resolve-config.js -><br/>src/config-utl/make-absolute.js",
+          },
+          {
+            source: "src/cli/format-meta-info.js",
+            target: "src/main/index.js",
+            displayname: "src/cli/format-meta-info.js -><br/>src/main/index.js",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/defaults.json",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/defaults.json",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/init-config/build-config.js",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/init-config/build-config.js",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/init-config/environment-helpers.js",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/init-config/environment-helpers.js",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/init-config/get-user-input.js",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/init-config/get-user-input.js",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/init-config/normalize-init-options.js",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/init-config/normalize-init-options.js",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/init-config/write-config.js",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/init-config/write-config.js",
+          },
+          {
+            source: "src/cli/init-config/index.js",
+            target: "src/cli/init-config/write-run-scripts-to-manifest.js",
+            displayname:
+              "src/cli/init-config/index.js -><br/>src/cli/init-config/write-run-scripts-to-manifest.js",
+          },
+          {
+            source: "src/cli/init-config/build-config.js",
+            target: "src/cli/init-config/config.js.template.js",
+            displayname:
+              "src/cli/init-config/build-config.js -><br/>src/cli/init-config/config.js.template.js",
+          },
+          {
+            source: "src/cli/init-config/build-config.js",
+            target: "src/cli/init-config/utl.js",
+            displayname:
+              "src/cli/init-config/build-config.js -><br/>src/cli/init-config/utl.js",
+          },
+          {
+            source: "src/cli/init-config/get-user-input.js",
+            target: "src/cli/init-config/environment-helpers.js",
+            displayname:
+              "src/cli/init-config/get-user-input.js -><br/>src/cli/init-config/environment-helpers.js",
+          },
+          {
+            source: "src/cli/init-config/get-user-input.js",
+            target: "src/cli/init-config/inquirer-validators.js",
+            displayname:
+              "src/cli/init-config/get-user-input.js -><br/>src/cli/init-config/inquirer-validators.js",
+          },
+          {
+            source: "src/cli/init-config/inquirer-validators.js",
+            target: "src/cli/init-config/environment-helpers.js",
+            displayname:
+              "src/cli/init-config/inquirer-validators.js -><br/>src/cli/init-config/environment-helpers.js",
+          },
+          {
+            source: "src/cli/init-config/normalize-init-options.js",
+            target: "src/cli/init-config/environment-helpers.js",
+            displayname:
+              "src/cli/init-config/normalize-init-options.js -><br/>src/cli/init-config/environment-helpers.js",
+          },
+          {
+            source: "src/cli/init-config/write-config.js",
+            target: "src/cli/defaults.json",
+            displayname:
+              "src/cli/init-config/write-config.js -><br/>src/cli/defaults.json",
+          },
+          {
+            source: "src/cli/init-config/write-config.js",
+            target: "src/cli/init-config/environment-helpers.js",
+            displayname:
+              "src/cli/init-config/write-config.js -><br/>src/cli/init-config/environment-helpers.js",
+          },
+          {
+            source: "src/cli/init-config/write-run-scripts-to-manifest.js",
+            target: "src/utl/wrap-and-indent.js",
+            displayname:
+              "src/cli/init-config/write-run-scripts-to-manifest.js -><br/>src/utl/wrap-and-indent.js",
+          },
+          {
+            source: "src/cli/init-config/write-run-scripts-to-manifest.js",
+            target: "src/cli/defaults.json",
+            displayname:
+              "src/cli/init-config/write-run-scripts-to-manifest.js -><br/>src/cli/defaults.json",
+          },
+          {
+            source: "src/cli/init-config/write-run-scripts-to-manifest.js",
+            target: "src/cli/init-config/environment-helpers.js",
+            displayname:
+              "src/cli/init-config/write-run-scripts-to-manifest.js -><br/>src/cli/init-config/environment-helpers.js",
+          },
+          {
+            source: "src/cli/init-config/write-run-scripts-to-manifest.js",
+            target: "src/cli/init-config/utl.js",
+            displayname:
+              "src/cli/init-config/write-run-scripts-to-manifest.js -><br/>src/cli/init-config/utl.js",
+          },
+          {
+            source: "src/cli/listeners/cli-feedback/index.js",
+            target: "src/utl/bus-log-levels.js",
+            displayname:
+              "src/cli/listeners/cli-feedback/index.js -><br/>src/utl/bus-log-levels.js",
+          },
+          {
+            source: "src/cli/listeners/performance-log/index.js",
+            target: "src/utl/bus-log-levels.js",
+            displayname:
+              "src/cli/listeners/performance-log/index.js -><br/>src/utl/bus-log-levels.js",
+          },
+          {
+            source: "src/cli/listeners/performance-log/index.js",
+            target: "src/cli/listeners/performance-log/handlers.js",
+            displayname:
+              "src/cli/listeners/performance-log/index.js -><br/>src/cli/listeners/performance-log/handlers.js",
+          },
+          {
+            source: "src/cli/listeners/performance-log/handlers.js",
+            target: "src/cli/listeners/performance-log/format-helpers.js",
+            displayname:
+              "src/cli/listeners/performance-log/handlers.js -><br/>src/cli/listeners/performance-log/format-helpers.js",
+          },
+          {
+            source: "bin/wrap-stream-in-html.js",
+            target: "src/cli/tools/wrap-stream-in-html.js",
+            displayname:
+              "bin/wrap-stream-in-html.js -><br/>src/cli/tools/wrap-stream-in-html.js",
+          },
+        ],
+      };
+
+      const elem = document.getElementById("3d-graph");
+      const Graph = ForceGraph3D()(elem)
+        .graphData(gData)
+        .nodeAutoColorBy("group")
+        .nodeLabel((node) => node.dirname + "</br>" + node.displayname)
+        .onNodeHover((node) => (elem.style.cursor = node ? "pointer" : null))
+        /* nice idea, but the 3D graph tends to look cluttered. Also GPU/ CPU 
+           intensive when run on a serious code base (e.g. react that has 
+            ~4500 nodes and ~10000 links 
+        */
+        // .nodeThreeObject(node => {
+        //   const sprite = new SpriteText(node.displayname);
+        //   sprite.material.depthWrite = true; // make sprite background transparent
+        //   sprite.color = node.color;
+        //   sprite.textHeight = 8;
+        //   return sprite;
+        // })
+        .linkOpacity(0.2)
+        .linkWidth(2)
+        .linkDirectionalArrowLength(4)
+        // .linkDirectionalParticles(7) // cool but a bit GPU intensive
+        .linkLabel((link) => link.displayname)
+        .onLinkHover((link) => (elem.style.cursor = link ? "pointer" : null));
+    </script>
+  </body>
+</html>
