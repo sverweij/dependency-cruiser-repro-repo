@@ -1,0 +1,17 @@
+{
+  "name": "thing",
+  "version": "1.0.0",
+  "description": "repro repo for https://github.com/sverweij/dependency-cruiser/issues/462",
+  "scripts": {
+    "depcruise:graph": "depcruise src --include-only '^(src)' --config --output-type dot | dot -T svg | tee dependency-graph.svg | depcruise-wrap-stream-in-html > dependency-graph.html",
+    "depcruise:graph-archi": "depcruise src --include-only '^(src)' --config --output-type archi | dot -T svg | tee high-level-dependency-graph.svg | depcruise-wrap-stream-in-html > high-level-dependency-graph.html",
+    "depcruise:graph-with-collapse-command-line-switch": "depcruise src --include-only '^(src)' --collapse 2 --config --output-type dot | dot -T svg | tee high-level-dependency-graph.svg | depcruise-wrap-stream-in-html > high-level-dependency-graph.html",
+    "depcruise:graph:dev": "depcruise src --include-only '^(src)' --prefix vscode://file/$(pwd)/ --config --output-type dot | dot -T svg | depcruise-wrap-stream-in-html | browser"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^10.0.0"
+  }
+}
