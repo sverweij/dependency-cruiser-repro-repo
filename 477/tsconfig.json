@@ -1,0 +1,4 @@
+{
+  "extends": "@company/package/src/baseConfig.json",
+  "compilerOptions": { "baseUrl": ".", "rootDir": "./", "outDir": "lib" }
+}

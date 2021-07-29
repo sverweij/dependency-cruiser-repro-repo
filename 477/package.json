@@ -1,0 +1,15 @@
+{
+  "name": "477",
+  "version": "1.0.0",
+  "description": "reproduction folder for https://github.com/sverweij/dependency-cruiser/issues/477",
+  "scripts": {
+    "postinstall": "unzip -u @company.zip -d node_modules",
+    "depcruise": "depcruise src -v -T text"
+  },
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "9.17.0",
+    "typescript": "^4.3.5"
+  }
+}
