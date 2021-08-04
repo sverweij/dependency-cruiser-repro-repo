@@ -1,0 +1,15 @@
+{
+  "name": "480",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Sander Verweij (https://sverweij.github.io)",
+  "license": "MIT",
+  "scripts": {
+    "dc": "depcruise src --ts-config -T text",
+    "fs": "node index.js"
+  },
+  "devDependencies": {
+    "dependency-cruiser": "10.0.8-beta-1",
+    "typescript": "^4.3.5"
+  }
+}
