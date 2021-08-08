@@ -1,0 +1,7 @@
+{
+  "name": "@applications/app",
+  "version": "0.1.0",
+  "dependencies": {
+    "@packages/shared": "workspace:@packages/shared"
+  }
+}

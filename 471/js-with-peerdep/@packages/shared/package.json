@@ -1,0 +1,8 @@
+{
+  "name": "@packages/shared",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "peerDependencies": {
+    "lodash": "*"
+  }
+}
