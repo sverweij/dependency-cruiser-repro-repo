@@ -1,0 +1,15 @@
+[
+  {
+    "from": "src/brand.js",
+    "to": "src/domain.js",
+    "rule": {
+      "severity": "warn",
+      "name": "no-circular"
+    },
+    "cycle": [
+      "src/domain.js",
+      "src/market.js",
+      "src/brand.js"
+    ]
+  }
+]
