@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "module": "ESNext",
+    "strict": true,
+    "outDir": "./dist",
+
+    "baseUrl": "./",
+    "paths": {
+      "elements/*": ["./src/elements/*"],
+      "helpers/*": ["./src/helpers/*"]
+    }
+  }
+}

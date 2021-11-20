@@ -1,0 +1,24 @@
+{
+  "name": "523",
+  "version": "1.0.0",
+  "description": "reproduction sample for dependency-cruiser issue 523",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run depcruise:graph:all && npm run depcruise:graph:src",
+    "depcruise:graph:all": "depcruise src --config --output-type dot | dot -Tsvg | tee everything.svg | depcruise-wrap-stream-in-html > everything.html",
+    "depcruise:graph:src": "depcruise src --include-only '^(src)' --config --output-type dot | dot -Tsvg | tee src-only.svg | depcruise-wrap-stream-in-html > src-only.html",
+    "depcruise:graph:dev": "depcruise src --include-only '^(src)' --prefix vscode://file/$(pwd)/ --config --output-type dot | dot -T svg | depcruise-wrap-stream-in-html | browser",
+    "depcruise:metrics:all": "depcruise src --config --output-type metrics",
+    "depcruise:metrics:src": "depcruise src --include-only '^src' --config --output-type metrics"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^10.8.0-beta-1",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "recoil": "^0.5.2"
+  }
+}
