@@ -1,0 +1,13 @@
+{
+  "name": "apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deps:check": "depcruise src --validate .dependency-cruiser.js",
+    "deps:text": "depcruise src --validate .dependency-cruiser.js -T text"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT"
+}
