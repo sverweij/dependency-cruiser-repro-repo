@@ -19,7 +19,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
-    "lib": ["ES2021"],
+    "lib": ["es2020"],
     "target": "esnext",
     "types": ["node", "jest"],
     "incremental": true,
@@ -27,7 +27,7 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
     "baseUrl": ".",
     "tsBuildInfoFile": "tsconfig.build.tsbuildinfo",
     "paths": {
