@@ -1,0 +1,12 @@
+{
+  "name": "dependency-cruiser-absolute-imports-bug",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "dependency-cruiser": "11.11.0",
+    "typescript": "4.1.3"
+  },
+  "scripts": {
+    "depcruise": "depcruise --include-only \"^(src)\" --output-type dot src | dot -T svg > dependencygraph.svg"
+  }
+}
