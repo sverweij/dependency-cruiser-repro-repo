@@ -1,0 +1,26 @@
+{
+  "name": "678",
+  "version": "1.0.0",
+  "description": "reproduction example for https://github.com/sverweij/dependency-cruiser/issues/678",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "depcruise src --config --output-type json",
+    "depcruise": "depcruise src  --config",
+    "depcruise:graph": "depcruise src --include-only '^(src)' --config --output-type dot | dot -T svg | depcruise-wrap-stream-in-html > dependency-graph.html",
+    "depcruise:graph:dev": "depcruise src --include-only '^(src)' --prefix vscode://file/$(pwd)/ --config --output-type dot | dot -T svg | depcruise-wrap-stream-in-html | browser",
+    "depcruise:graph:archi": "depcruise src --include-only '^(src)' --config --output-type archi | dot -T svg | depcruise-wrap-stream-in-html > high-level-dependency-graph.html",
+    "depcruise:html": "depcruise src  --progress --config --output-type err-html --output-to dependency-violation-report.html",
+    "depcruise:text": "depcruise src  --progress --config --output-type text",
+    "depcruise:focus": "depcruise src  --progress --config --output-type text --focus"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^11.17.0"
+  },
+  "dependencies": {
+    "punycode": "^2.1.1"
+  }
+}
