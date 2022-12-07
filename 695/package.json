@@ -1,0 +1,23 @@
+{
+  "name": "695",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "depcruise": "depcruise src  --config",
+    "depcruise:graph": "depcruise src --include-only '^(src)' --config --output-type dot | dot -T svg | tee  dependency-graph.svg |depcruise-wrap-stream-in-html > dependency-graph.html",
+    "depcruise:graph:dev": "depcruise src --include-only '^(src)' --prefix vscode://file/$(pwd)/ --config --output-type dot | dot -T svg | depcruise-wrap-stream-in-html | browser",
+    "depcruise:graph:archi": "depcruise src --include-only '^(src)' --config --output-type archi | dot -T svg | depcruise-wrap-stream-in-html > high-level-dependency-graph.html",
+    "depcruise:html": "depcruise src  --progress --config --output-type err-html --output-to dependency-violation-report.html",
+    "depcruise:text": "depcruise src  --progress --config --output-type text",
+    "depcruise:json": "depcruise src  --progress --config --output-type json"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^12.1.0",
+    "typescript": "^4.9.3"
+  }
+}
