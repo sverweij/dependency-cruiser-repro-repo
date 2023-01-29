@@ -1,0 +1,41 @@
+import path from "path";
+import { promises as fs } from "fs";
+import webpack from "webpack";
+
+const __dirname = process.cwd();
+
+export default {
+  mode: "production",
+  target: "node",
+  entry: path.resolve(__dirname, "./src/index.js"),
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.cjs",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: [/(node_modules)/, /(__tests__)/],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
+  },
+  //   plugins: [
+  //     new webpack.BannerPlugin({
+  //       banner: "#!/usr/bin/env node",
+  //       raw: true,
+  //       entryOnly: true,
+  //     }),
+  //     function () {
+  //       this.hooks.done.tapPromise("Make executable", async () => {
+  //         await fs.chmod(`${__dirname}/dist/bundle.cjs`, "755");
+  //       });
+  //     },
+  //   ],
+};

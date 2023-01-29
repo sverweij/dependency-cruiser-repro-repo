@@ -1,0 +1,24 @@
+{
+  "name": "733",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "dependencies": {
+    "dependency-cruiser": "^12.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/parser": "^7.20.13",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
