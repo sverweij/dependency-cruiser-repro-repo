@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+
+    /* "module" defaults to 'commonjs'. 
+       If your package.json spells "type": "module", you'll be in a world of pain
+       when you don't change it to something quite recent. Also see the TypeScript
+       doc about 
+     */
+    "module": "ES2022",
+    "rootDir": "./src",
+    // "node" is the default these days anyway but I rather be explicit
+    // "nodenext" uses the exports fields
+    "moduleResolution": "nodenext",
+    "outDir": "./dist",
+    "removeComments": true,
+    /* with esModuleInterop on true you can't 
+        import {cruise} from 'dependency-cruiser';
+      but need to 
+        import dependencyCruiser from 'dependency-cruiser';
+
+      in stead and use dependencyCruiser functions namespaced e.g.
+        dependencyCruiser.cruise
+      or 
+        const { cruise } = dependencyCruiser
+
+      with esModuleInterop on false you can import as you like
+    */
+    "esModuleInterop": false,
+    /*
+      personal preference to set strict to true; not necessary to get happy
+      results
+    */
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
+}
