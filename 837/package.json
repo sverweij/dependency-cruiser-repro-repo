@@ -1,0 +1,17 @@
+{
+  "name": "837",
+  "version": "1.0.0",
+  "description": "MRS for https://github.com/sverweij/dependency-cruiser/issues/837",
+  "main": "",
+  "scripts": {
+    "depcruise": "depcruise src ",
+    "postinstall": "cp -r copy-this-to-node_modules/* node_modules/"
+  },
+  "keywords": [],
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^13.1.5",
+    "typescript": "^5.2.2"
+  }
+}
