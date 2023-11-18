@@ -1,7 +1,9 @@
 ## minimal repro repo for [#868](https://github.com/sverweij/dependency-cruiser/issues/868)
 
+To replay `npm install` and replay the npx commands below.
+
 The issue mentioned doesn't seem to be reproducable with the current version
-of dependency-cruiser on its default settings. `yargs` is resolved to where
+of dependency-cruiser on its default settings. `yargs` seems to be resolved to where
 it's supposed to.
 
 ```sh
