@@ -1,0 +1,22 @@
+{
+  "name": "909",
+  "version": "1.0.0",
+  "description": "trying to reproduce dependency-cruiser issue 909",
+  "type": "module",
+  "bin": {
+    "nineonine": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "depcruise": "depcruise src",
+    "depcruise:text": "depcruise src --output-type text",
+    "depcruise:json": "depcruise src --output-type json",
+    "depcruise:svg": "depcruise src --output-type dot | dot -T svg > graph.svg"
+  },
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^16.2.0",
+    "typescript": "^5.3.3"
+  }
+}
