@@ -1,0 +1,3 @@
+- install: `npm i`
+- verify cli dependency-cruiser works: `npx depcruise src`
+- verify the api version works:  `node cruise.js`

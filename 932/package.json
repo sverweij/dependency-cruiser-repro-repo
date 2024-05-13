@@ -1,0 +1,13 @@
+{
+  "name": "932",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "dependency-cruiser": "^16.3.2",
+    "typescript": "^5.4.5"
+  }
+}
